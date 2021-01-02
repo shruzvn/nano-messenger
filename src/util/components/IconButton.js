@@ -8,6 +8,7 @@ const Button = styled(Main).attrs({as: "div", flexEnabled: true, xAlign: "center
     border-radius: 50%;
     cursor: pointer;
     transition-property: background-color, color, transform;
+    transition-duration: 300ms;
     background-color: ${({ theme, type }) => {
         switch (type) {
             case 3:
@@ -28,17 +29,17 @@ const Button = styled(Main).attrs({as: "div", flexEnabled: true, xAlign: "center
         `
     }
 
-    //select the correct icon color based on the given type
+    //select the correct icon color based on the given type and active state
     i{
         font-size: 1.4rem;
-        color: ${({ theme, type }) => type === 3 ? theme.primaryInner : theme.icon};
+        color: ${({ theme, type, active }) => type === 3 ? theme.primaryInner : (type === 1 && active) ? theme.primary : theme.icon};
     }
 `;
 
-function IconButton({type, icon, disableEffects}){
+function IconButton(props){
     return(
-        <Button type={type} disableEffects={disableEffects}>
-            <i className="material-icons-outlined">{icon}</i>
+        <Button {...props} >
+            <i className="material-icons-outlined">{props.icon}</i>
         </Button>
     )
 }

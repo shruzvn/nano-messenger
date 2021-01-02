@@ -17,7 +17,7 @@ const Container = styled(Main).attrs({
 `;
 
 const Buttons = [
-    { id: "message", icon: "message" },
+    { id: "messages", icon: "message" },
     { id: "contacts", icon: "contacts" },
     { id: "writeMessage", icon: "create", primary: true },
     { id: "settings", icon: "settings" },

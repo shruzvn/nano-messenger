@@ -5,9 +5,9 @@ import styled, { css } from 'styled-components';
 
 export const Main = styled.section`
     position: relative;
-    background-color: #FFF; //this will be changed
+    background-color: ${({ theme }) => theme.main[0]};
     border-width: 0.1rem;
-    border-color: #000; //this will be changed
+    border-color: ${({ theme }) => theme.border};
     border-style: ${({ borderDirection }) => {
         switch (borderDirection) {
             case "up":

@@ -3,7 +3,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import GlobalStyles from './themes/GlobalStyles';
+import GlobalStyles from './theme/GlobalStyles';
 import App from './App';
 
 ReactDOM.render(

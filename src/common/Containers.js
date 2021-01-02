@@ -24,7 +24,7 @@ export const Main = styled.section`
     ${({ flexEnabled, xAlign, yAlign }) => flexEnabled && css`
             display: flex;
             align-items: ${yAlign};
-            justify-items: ${xAlign};
+            justify-content: ${xAlign};
         `
     }
 `;

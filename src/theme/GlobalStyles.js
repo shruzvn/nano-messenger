@@ -16,6 +16,8 @@ const GlobalStyle = createGlobalStyle`
     }
 
     //animations
+
+    //Fade
     .fade-enter {
         opacity: 0;
     }
@@ -30,10 +32,33 @@ const GlobalStyle = createGlobalStyle`
         opacity: 0;
         transition: opacity 200ms;
     }
-
-    .fadeToUp-enter {
+    
+    //Fade to down
+    .fadeToDown-enter {
         opacity: 0;
         transform: translateY(-100%);
+    }
+    .fadeToDown-enter-active {
+        opacity: 1;
+        transform: translateY(0);
+        transition-property: transform, opacity;
+        transition-duration: 200ms;
+    }
+    .fadeToDown-exit {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    .fadeToDown-exit-active {
+        opacity: 0;
+        transform: translateY(100%);
+        transition-property: transform, opacity;
+        transition-duration: 200ms;
+    }
+
+    //Fade to up
+    .fadeToUp-enter {
+        opacity: 0;
+        transform: translateY(100%);
     }
     .fadeToUp-enter-active {
         opacity: 1;
@@ -47,11 +72,12 @@ const GlobalStyle = createGlobalStyle`
     }
     .fadeToUp-exit-active {
         opacity: 0;
-        transform: translateY(100%);
+        transform: translateY(-100%);
         transition-property: transform, opacity;
         transition-duration: 200ms;
     }
 
+    //Slide through X axis
     .xSlide-enter {
         transform: translateX(100%);
     }
@@ -65,6 +91,28 @@ const GlobalStyle = createGlobalStyle`
     .xSlide-exit-active {
         transform: translateX(100%);
         transition: transform 200ms !important;
+    }
+
+    //Pop and fade
+    .pop-fade-enter {
+        opacity: 0;
+        transform: scale(.5);
+    }
+    .pop-fade-enter-active {
+        opacity: 1;
+        transform: scale(1);
+        transition-property: transform, opacity;
+        transition-duration: 200ms;
+    }
+    .pop-fade-exit {
+        opacity: 1;
+        transform: scale(1);
+    }
+    .pop-fade-exit-active {
+        opacity: 0;
+        transform: scale(.5);
+        transition-property: transform, opacity;
+        transition-duration: 200ms;
     }
 `;
 

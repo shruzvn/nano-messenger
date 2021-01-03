@@ -8,8 +8,8 @@ import App from './App';
 
 ReactDOM.render(
   [
-    <GlobalStyles/>,
-    <App/>
+    <GlobalStyles key={0}/>,
+    <App key={1}/>
   ],
   document.getElementById('root')
 );

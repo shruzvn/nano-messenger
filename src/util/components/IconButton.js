@@ -1,14 +1,19 @@
 import styled, { css } from 'styled-components';
+import { SwitchTransition, CSSTransition } from 'react-transition-group';
 
-import {Main} from '../../common/Containers';
+import { Main } from '../../common/Containers';
 
-const Button = styled(Main).attrs({as: "div", flexEnabled: true, xAlign: "center", yAlign: "center"})`
+const Button = styled(Main).attrs({ as: "div", flexEnabled: true, xAlign: "center", yAlign: "center" })`
     width: 3rem;
     height: 3rem;
     border-radius: 50%;
     cursor: pointer;
     transition-property: background-color, color, transform;
     transition-duration: 300ms;
+    overflow: hidden;
+
+    //select the correct icon color based on the given type and active state
+    color: ${({ theme, type, active }) => type === 3 ? theme.primaryInner : (type === 1 && active) ? theme.primary : theme.icon};
     background-color: ${({ theme, type }) => {
         switch (type) {
             case 3:
@@ -29,17 +34,27 @@ const Button = styled(Main).attrs({as: "div", flexEnabled: true, xAlign: "center
         `
     }
 
-    //select the correct icon color based on the given type and active state
     i{
         font-size: 1.4rem;
-        color: ${({ theme, type, active }) => type === 3 ? theme.primaryInner : (type === 1 && active) ? theme.primary : theme.icon};
     }
 `;
 
-function IconButton(props){
-    return(
+function IconButton(props) {
+    return (
         <Button {...props} >
-            <i className="material-icons-outlined">{props.icon}</i>
+            {typeof props.icon !== "string" ?
+                <SwitchTransition mode="out-in">
+                    <CSSTransition key={props.animationState} classNames="fadeToUp" addEndListener={(node, done) => {
+                        node.addEventListener("transitionend", done, false);
+                    }}>
+                        <i className="material-icons-outlined">
+                            {props.animationState ? props.icon[0] : props.icon[1]}
+                        </i>
+                    </CSSTransition>
+                </SwitchTransition>
+                :
+                <i className="material-icons-outlined">{props.icon}</i>
+            }
         </Button>
     )
 }

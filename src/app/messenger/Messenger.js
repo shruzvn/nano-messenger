@@ -22,6 +22,15 @@ const ActivityWrapper = styled(Main)`
     flex: 1;
 `;
 
+//temporary
+const Activity = styled(MaxToParent)`
+    background-color: ${({theme})=> theme.main[0]};
+    color: ${({theme})=> theme.text[0]};
+    transition-property: background-color, color;
+    transition-duration: 300ms;
+    padding: 1.4rem;
+`;
+
 const animationProps = {
     unmountOnExit: true,
     timeout: 300,
@@ -35,7 +44,7 @@ const children = [
     { id: "info", txt: "Information about app" }
 ];
 
-function Messenger() {
+function Messenger(props) {
     const [currentActivity, setActivity] = useState("messages");
 
     const changeActivity = e => {
@@ -44,15 +53,15 @@ function Messenger() {
 
     return (
         <MainContainer>
-            <Menu />
+            <Menu  {...props} />
             <Container>
                 <Navigator onSelect={changeActivity} active={currentActivity} />
                 <ActivityWrapper>
                     {children.map(child =>
                         <CSSTransition key={child.id} in={child.id === currentActivity} {...animationProps}>
-                            <MaxToParent>
+                            <Activity>
                                 {child.txt}
-                            </MaxToParent>
+                            </Activity>
                         </CSSTransition>
                     )}
                 </ActivityWrapper>

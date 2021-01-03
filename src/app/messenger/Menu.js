@@ -14,12 +14,12 @@ const RightGroup = styled(Main).attrs({ as: "div", flexEnabled: true })`
     }
 `;
 
-function Menu() {
+function Menu({darkMode, onThemeChange}) {
     return (
         <Container>
             <RightGroup>
                 <IconButton icon="power_settings_new" type={1}/>
-                <IconButton icon="dark_mode" type={2}/>
+                <IconButton onClick={onThemeChange} icon={["light_mode", "dark_mode"]} animationState={darkMode} type={2}/>
             </RightGroup>
         </Container>
     )

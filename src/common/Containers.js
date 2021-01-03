@@ -6,6 +6,8 @@ import styled, { css } from 'styled-components';
 export const Main = styled.section`
     position: relative;
     background-color: ${({ theme }) => theme.main[0]};
+    transition-property: background-color, border-color;
+    transition-duration: 300ms;
     border-width: 0.1rem;
     border-color: ${({ theme }) => theme.border};
     border-style: ${({ borderDirection }) => {
@@ -31,7 +33,6 @@ export const Main = styled.section`
 
 export const MaxToParent = styled.section`
     position: absolute;
-    background-color: #FFF; //this will be changed
     width: 100%;
     height: 100%;
     left: 0;

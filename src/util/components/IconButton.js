@@ -44,7 +44,7 @@ function IconButton(props) {
         <Button {...props} >
             {typeof props.icon !== "string" ?
                 <SwitchTransition mode="out-in">
-                    <CSSTransition key={props.animationState} classNames="fadeToUp" addEndListener={(node, done) => {
+                    <CSSTransition key={props.animationState} classNames="fadeToDown" addEndListener={(node, done) => {
                         node.addEventListener("transitionend", done, false);
                     }}>
                         <i className="material-icons-outlined">

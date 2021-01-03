@@ -134,7 +134,7 @@ function Activity({ children, onExit, borderDirection, disableSwap, onClick }) {
 
 const animationProps = {
     unmountOnExit: true,
-    timeout: 300,
+    timeout: 200,
     classNames: "xSlide"
 };
 

@@ -45,6 +45,7 @@ const OnlineDot = styled.div`
     height: 1rem;
     border-radius: 50%;
     transition-property: background-color, border-color;
+    transition-duration: 200ms;
     background-color: ${({ theme }) => theme.secondary};
     position: absolute;
     bottom: 0;

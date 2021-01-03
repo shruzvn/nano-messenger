@@ -10,6 +10,7 @@ export const Main = styled.section`
     transition-duration: 200ms;
     border-width: 0.1rem;
     border-color: ${({ theme }) => theme.border};
+    overflow: hidden;
     border-style: ${({ borderDirection }) => {
         switch (borderDirection) {
             case "up":

@@ -7,7 +7,7 @@ export const Main = styled.section`
     position: relative;
     background-color: ${({ theme }) => theme.main[0]};
     transition-property: background-color, border-color;
-    transition-duration: 300ms;
+    transition-duration: 200ms;
     border-width: 0.1rem;
     border-color: ${({ theme }) => theme.border};
     border-style: ${({ borderDirection }) => {

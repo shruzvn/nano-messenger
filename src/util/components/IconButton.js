@@ -9,7 +9,7 @@ const Button = styled(Main).attrs({ as: "div", flexEnabled: true, xAlign: "cente
     border-radius: 50%;
     cursor: pointer;
     transition-property: background-color, color, transform;
-    transition-duration: 300ms;
+    transition-duration: 200ms;
     overflow: hidden;
 
     //select the correct icon color based on the given type and active state

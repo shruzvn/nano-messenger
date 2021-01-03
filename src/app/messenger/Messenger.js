@@ -23,11 +23,13 @@ const ActivityWrapper = styled(Main)`
 `;
 
 //temporary
-const Activity = styled(MaxToParent)`
-    background-color: ${({theme})=> theme.main[0]};
-    color: ${({theme})=> theme.text[0]};
+const Activity = styled.div`
+    background-color: ${({ theme }) => theme.main[0]};
+    color: ${({ theme }) => theme.text[0]};
     transition-property: background-color, color;
     transition-duration: 300ms;
+    width: 100%;
+    height: 100%;
     padding: 1.4rem;
 `;
 
@@ -59,9 +61,11 @@ function Messenger(props) {
                 <ActivityWrapper>
                     {children.map(child =>
                         <CSSTransition key={child.id} in={child.id === currentActivity} {...animationProps}>
-                            <Activity>
-                                {child.txt}
-                            </Activity>
+                            <MaxToParent>
+                                <Activity>
+                                    {child.txt}
+                                </Activity>
+                            </MaxToParent>
                         </CSSTransition>
                     )}
                 </ActivityWrapper>

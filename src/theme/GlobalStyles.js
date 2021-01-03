@@ -30,6 +30,28 @@ const GlobalStyle = createGlobalStyle`
         opacity: 0;
         transition: opacity 200ms;
     }
+
+    //animations
+    .fadeToUp-enter {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+    .fadeToUp-enter-active {
+        opacity: 1;
+        transform: translateY(0);
+        transition-property: transform, opacity;
+        transition-duration: 300ms;
+    }
+    .fadeToUp-exit {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    .fadeToUp-exit-active {
+        opacity: 0;
+        transform: translateY(100%);
+        transition-property: transform, opacity;
+        transition-duration: 300ms;
+    }
 `;
 
 export default GlobalStyle;

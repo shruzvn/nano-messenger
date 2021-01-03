@@ -28,7 +28,7 @@ const Wrapper = styled(Main)`
 function Activity({ children, onExit, borderDirection, disableSwap, onClick }) {
     const ReferenceToContainer = useRef(null);
 
-    const [defaultPoint, initDefualtPoint] = useState(null),
+    const [defaultPoints, initDefualtPoints] = useState(null),
         [point, setPoint] = useState(0),
         [swapping, enableSwapping] = useState(null);
 
@@ -49,9 +49,9 @@ function Activity({ children, onExit, borderDirection, disableSwap, onClick }) {
     }, [disableSwap]);
 
     useEffect(() => {
-        if (defaultPoint) {
+        if (defaultPoints) {
             enableSwapping(true);
-            if (defaultPoint.isTouchScreen) {
+            if (defaultPoints.isTouchScreen) {
                 window.addEventListener("touchmove", swap, false);
                 window.addEventListener("touchend", swapEnds, false);
                 window.addEventListener("touchcancel", swapEnds, false);
@@ -61,11 +61,11 @@ function Activity({ children, onExit, borderDirection, disableSwap, onClick }) {
             }
         }
         //eslint-disable-next-line
-    }, [defaultPoint]);
+    }, [defaultPoints]);
 
     useEffect(() => {
         if (!swapping) {
-            if (point > 120)
+            if (point > 100)
                 onExit && onExit();
             else
                 setPoint(0);
@@ -74,29 +74,41 @@ function Activity({ children, onExit, borderDirection, disableSwap, onClick }) {
     }, [swapping])
 
     const swapStarts = e => {
-        let clientX, isTouchScreen = false;
+        let clientX, clientY, isTouchScreen = false;
         const { target } = e;
         if (e.changedTouches) {
             clientX = e.changedTouches[0].clientX;
+            clientY = e.changedTouches[0].clientY;
             isTouchScreen = true;
         }
         else {
             clientX = e.clientX;
+            clientY = e.clientY;
         }
         if (ReferenceToContainer.current.contains(target)) {
             if (!isTouchScreen)
                 e.preventDefault();
-            initDefualtPoint({ x: clientX, isTouchScreen });
+            initDefualtPoints({ x: clientX, y: clientY, isTouchScreen });
         }
     }
 
     const swap = (e) => {
-        let clientX;
-        if (e.changedTouches)
+        let clientX, clientY;
+        if (e.changedTouches) {
             clientX = e.changedTouches[0].clientX;
-        else
+            clientY = e.changedTouches[0].clientY;
+        }
+        else {
             clientX = e.clientX;
-        setPoint(Math.round(clientX - defaultPoint.x));
+            clientY = e.clientY;
+        }
+        const diff = Math.abs(clientY - defaultPoints.y),
+            calculatedPoint = Math.round(clientX - defaultPoints.x);
+        if ((diff > 10 && calculatedPoint < 50) || calculatedPoint < 0){
+            swapEnds();
+            return false;
+        }
+        setPoint(calculatedPoint);
     }
 
     const swapEnds = () => {
@@ -106,7 +118,7 @@ function Activity({ children, onExit, borderDirection, disableSwap, onClick }) {
         window.removeEventListener("touchend", swapEnds, false);
         window.removeEventListener("touchcancel", swapEnds, false);
         enableSwapping(false);
-        initDefualtPoint(null);
+        initDefualtPoints(null);
     }
 
     return (
@@ -133,7 +145,7 @@ function ActivityMaker({ children, activityState, onBack, mobileMode }) {
             {children.map((child, i) =>
                 i > 0 ?
                     mobileMode ?
-                        <CSSTransition key={i} in={activityState > i-1} {...animationProps}>
+                        <CSSTransition key={i} in={activityState > i - 1} {...animationProps}>
                             <Activity
                                 onExit={onBack}>
                                 {child}

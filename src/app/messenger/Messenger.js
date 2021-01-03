@@ -11,7 +11,14 @@ const MainContainer = styled(Main).attrs({ as: "main", flexEnabled: true })`
     flex-direction: column;
 `;
 
-const Container = styled(Main)`
+const Container = styled(Main).attrs({ flexEnabled: true })`
+    flex: 1;
+    @media (max-width: 1280px){
+        flex-direction: column-reverse;
+    }
+`;
+
+const ActivityWrapper = styled(Main)`
     flex: 1;
 `;
 
@@ -38,17 +45,17 @@ function Messenger() {
     return (
         <MainContainer>
             <Menu />
-            <Container flexEnabled>
+            <Container>
                 <Navigator onSelect={changeActivity} active={currentActivity} />
-                <Container>
+                <ActivityWrapper>
                     {children.map(child =>
-                        <CSSTransition in={child.id === currentActivity} {...animationProps}>
+                        <CSSTransition key={child.id} in={child.id === currentActivity} {...animationProps}>
                             <MaxToParent>
                                 {child.txt}
                             </MaxToParent>
                         </CSSTransition>
                     )}
-                </Container>
+                </ActivityWrapper>
             </Container>
         </MainContainer>
     )

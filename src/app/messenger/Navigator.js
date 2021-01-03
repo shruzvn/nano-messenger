@@ -14,6 +14,17 @@ const Container = styled(Main).attrs({
             margin-top: 0;
         }
     }
+    @media (max-width: 1280px){
+        flex-direction: row;
+        border-style: solid none none;
+        div{
+            margin-top: 0;
+            margin-left: 2rem;
+            &:first-of-type{
+                margin-left: 0;
+            }
+        }
+    }
 `;
 
 const Buttons = [

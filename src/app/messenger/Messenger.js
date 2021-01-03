@@ -5,6 +5,8 @@ import { CSSTransition } from 'react-transition-group';
 import { Main, MaxToParent } from '../../common/Containers';
 import Menu from './Menu';
 import Navigator from './Navigator';
+import Messages from './messages/Messages';
+import Contacts from './contacts/Contacts';
 
 const MainContainer = styled(Main).attrs({ as: "main", flexEnabled: true })`
     height: 100vh;
@@ -30,7 +32,11 @@ const Activity = styled.div`
     transition-duration: 300ms;
     width: 100%;
     height: 100%;
-    padding: 1.4rem;
+    display: grid;
+    grid-template-columns: ${({gridCols})=> gridCols};
+    @media (max-width: 1280px){
+        grid-template-columns: 1fr;
+    }
 `;
 
 const animationProps = {
@@ -41,12 +47,14 @@ const animationProps = {
 
 //temporary
 const children = [
-    { id: "messages", txt: "Your Messages" }, { id: "contacts", txt: "Your Contacts" },
-    { id: "writeMessage", txt: "Write a new message" }, { id: "settings", txt: "App Settings" },
-    { id: "info", txt: "Information about app" }
+    { id: "messages", txt: <Messages/>, grid: "24% 1fr 20%" },
+    { id: "contacts", txt: <Contacts/>, grid: "24% 1fr"  },
+    { id: "writeMessage", txt: "Write a new message", grid: "1fr" },
+    { id: "settings", txt: "App Settings", grid: "1fr" },
+    { id: "info", txt: "Information about app", grid: "1fr" }
 ];
 
-function Messenger(props) {
+function Messenger() {
     const [currentActivity, setActivity] = useState("messages");
 
     const changeActivity = e => {
@@ -55,14 +63,14 @@ function Messenger(props) {
 
     return (
         <MainContainer>
-            <Menu  {...props} />
+            <Menu/>
             <Container>
                 <Navigator onSelect={changeActivity} active={currentActivity} />
                 <ActivityWrapper>
                     {children.map(child =>
                         <CSSTransition key={child.id} in={child.id === currentActivity} {...animationProps}>
                             <MaxToParent>
-                                <Activity>
+                                <Activity gridCols={child.grid}>
                                     {child.txt}
                                 </Activity>
                             </MaxToParent>

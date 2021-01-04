@@ -25,7 +25,7 @@ function App() {
     const screenResizeListener = () => {
         dispatch(enableMobileView(window.innerWidth < 1280));
         if (window.innerWidth === screen.width) {
-            if (window.innerHeight + 300 > screen.height)
+            if (document.activeElement.tagName !== "INPUT")
                 setScreen({ height: window.innerHeight, width: window.innerWidth });
         } else
             setScreen({ height: window.innerHeight, width: window.innerWidth });

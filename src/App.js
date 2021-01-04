@@ -11,7 +11,7 @@ function App() {
     const darkMode = useSelector(state => state.darkMode);
     const dispatch = useDispatch();
 
-    const [screenHeight, setScreenHeight] = useState(window.innerHeight);
+    const [screen, setScreen] = useState({ width: window.innerWidth, height: window.innerHeight });
 
     useEffect(() => {
         screenResizeListener();
@@ -24,12 +24,13 @@ function App() {
 
     const screenResizeListener = () => {
         dispatch(enableMobileView(window.innerWidth < 1280));
-        window.innerHeight + 300 > screenHeight && setScreenHeight(window.innerHeight);
+        if (window.innerHeight + 300 > screen.height && window.innerWidth !== screen.width)
+            setScreen({height: window.innerHeight, width: window.innerWidth});
     }
 
     return (
         <ThemeProvider theme={darkMode ? Dark : Light}>
-            <main style={{ width: "100%", height: screenHeight + "px" }}>
+            <main style={{ width: "100%", height: screen.height + "px" }}>
                 <Messenger />
             </main>
         </ThemeProvider>

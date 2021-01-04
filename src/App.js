@@ -24,12 +24,12 @@ function App() {
 
     const screenResizeListener = () => {
         dispatch(enableMobileView(window.innerWidth < 1280));
-        setScreenHeight(window.innerHeight);
+        window.innerHeight + 300 > screenHeight && setScreenHeight(window.innerHeight);
     }
 
     return (
         <ThemeProvider theme={darkMode ? Dark : Light}>
-            <main style={{ width: "100vw", height: screenHeight + "px" }}>
+            <main style={{ width: "100%", height: screenHeight + "px" }}>
                 <Messenger />
             </main>
         </ThemeProvider>

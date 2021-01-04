@@ -44,7 +44,7 @@ function Messages() {
     return (
         <ActivityMaker mobileMode={mobileView}
             activityState={activityState} onBack={moveToPreviousActivity}>
-            <Scrollbar searchbar>
+            <Scrollbar searchbar="messages">
                 {FakeData.map(data =>
                     <InfoBox onClick={moveToNextActivity} key={data.id}
                         profile={{ name: data.name, img: "img/" + data.id + ".jpg", online: data.online }}>

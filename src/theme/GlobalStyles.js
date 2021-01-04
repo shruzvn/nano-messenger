@@ -33,6 +33,28 @@ const GlobalStyle = createGlobalStyle`
         transition: opacity 200ms;
     }
     
+    //Zoom Fade
+    .zoomFade-enter {
+        opacity: 0;
+        transform: scale(.95);
+    }
+    .zoomFade-enter-active {
+        opacity: 1;
+        transform: scale(1);
+        transition-property: transform, opacity;
+        transition-duration: 200ms;
+    }
+    .zoomFade-exit {
+        opacity: 1;
+        transform: scale(1);
+    }
+    .zoomFade-exit-active {
+        opacity: 0;
+        transform: scale(1.05);
+        transition-property: transform, opacity;
+        transition-duration: 200ms;
+    }
+
     //Fade to down
     .fadeToDown-enter {
         opacity: 0;

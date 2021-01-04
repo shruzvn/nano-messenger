@@ -8,7 +8,7 @@ import Navigator from './Navigator';
 import Messages from './messages/Messages';
 import Contacts from './contacts/Contacts';
 
-const MainContainer = styled(Main).attrs({flexEnabled: true })`
+const MainContainer = styled(Main).attrs({ flexEnabled: true })`
     height: 100%;
     flex-direction: column;
 `;
@@ -33,7 +33,7 @@ const Activity = styled.div`
     width: 100%;
     height: 100%;
     display: grid;
-    grid-template-columns: ${({gridCols})=> gridCols};
+    grid-template-columns: ${({ gridCols }) => gridCols};
     @media (max-width: 1280px){
         grid-template-columns: 1fr;
     }
@@ -42,14 +42,13 @@ const Activity = styled.div`
 const animationProps = {
     unmountOnExit: true,
     timeout: 300,
-    classNames: "fade"
+    classNames: "zoomFade"
 };
 
 //temporary
 const children = [
-    { id: "messages", txt: <Messages/>, grid: "24% 1fr 20%" },
-    { id: "contacts", txt: <Contacts/>, grid: "24% 1fr"  },
-    { id: "writeMessage", txt: "Write a new message", grid: "1fr" },
+    { id: "messages", txt: <Messages />, grid: "24% 1fr 20%" },
+    { id: "contacts", txt: <Contacts />, grid: "24% 1fr" },
     { id: "settings", txt: "App Settings", grid: "1fr" },
     { id: "info", txt: "Information about app", grid: "1fr" }
 ];
@@ -58,12 +57,14 @@ function Messenger() {
     const [currentActivity, setActivity] = useState("messages");
 
     const changeActivity = e => {
-        setActivity(e.currentTarget.id);
+        const { id } = e.currentTarget;
+        if (id !== "writeMessage")
+            setActivity(id);
     }
 
     return (
         <MainContainer>
-            <Menu/>
+            <Menu />
             <Container>
                 <Navigator onSelect={changeActivity} active={currentActivity} />
                 <ActivityWrapper>

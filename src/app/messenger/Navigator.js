@@ -6,10 +6,10 @@ import IconButton from '../../util/components/IconButton';
 const Container = styled(Main).attrs({
     flexEnabled: true, xAlign: "center", yAlign: "center", borderDirection: "right"
 })`
-    padding: 1.4rem;
+    padding: 1rem;
     flex-direction: column;
     div{
-        margin-top: 2rem;
+        margin-top: 2.5rem;
         &:first-of-type{
             margin-top: 0;
         }

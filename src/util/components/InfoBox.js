@@ -18,7 +18,7 @@ const Group = styled(Main).attrs({ as: "div", yAlign: "center", flexEnabled: tru
 `;
 
 const Container = styled(Group)`
-    padding: ${({ size }) => size === "S" ? "1.5rem 1.1rem" : "1.5rem 1.4rem"};
+    padding: 1rem 1.5rem;
     background-color: ${({ theme, acitve }) => acitve ? theme.main[2] : theme.main[0]};
     cursor: pointer;
     &:active{

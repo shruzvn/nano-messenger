@@ -24,7 +24,7 @@ function App() {
 
     const screenResizeListener = () => {
         dispatch(enableMobileView(window.innerWidth < 1280));
-        setScreenHeight(window.screenHeight);
+        setScreenHeight(window.innerHeight);
     }
 
     return (

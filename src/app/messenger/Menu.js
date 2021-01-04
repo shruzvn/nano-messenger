@@ -7,7 +7,7 @@ import { Main } from '../../common/Containers';
 import IconButton from '../../util/components/IconButton';
 
 const Container = styled(Main).attrs({ as: "menu", flexEnabled: true, borderDirection: "down" })`
-    padding: 1.4rem;
+    padding: 1rem 1.5rem;
 `;
 
 const RightGroup = styled(Main).attrs({ as: "div", flexEnabled: true })`

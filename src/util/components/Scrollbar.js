@@ -21,8 +21,8 @@ const SearchContainer = styled.div`
 
 const Searchbar = styled.div`
     padding: 1.5rem 1.5rem 0;
-    background-color: ${({ theme })=> theme.main[0]};
-    box-shadow: 0 .5rem 1rem ${({ theme })=> theme.main[0]};
+    background-color: ${({ theme }) => theme.main[0]};
+    box-shadow: 0 .5rem 1rem ${({ theme }) => theme.main[0]};
     transition-property: box-shadow, background-color;
     transition-duration: 200ms;
     position: relative;
@@ -64,7 +64,7 @@ function Scrollbar({ children, searchbar }) {
             {searchbar &&
                 <SearchContainer>
                     <Searchbar>
-                        <SearchInput placeholder="Search in messages..." />
+                        <SearchInput placeholder={"Search in " + searchbar + "..."} />
                         <i className="material-icons-outlined">search</i>
                     </Searchbar>
                 </SearchContainer>

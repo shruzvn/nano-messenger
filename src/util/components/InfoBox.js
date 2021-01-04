@@ -19,7 +19,7 @@ const Group = styled(Main).attrs({ as: "div", yAlign: "center", flexEnabled: tru
 
 const Container = styled(Group)`
     padding: 1rem 1.5rem;
-    background-color: ${({ theme, acitve }) => acitve ? theme.main[2] : theme.main[0]};
+    background-color: ${({ theme, active }) => active ? theme.main[1] : theme.main[0]};
     cursor: pointer;
     &:active{
         background-color: ${({theme})=> theme.main[1]};
@@ -29,9 +29,9 @@ const Container = styled(Group)`
     }
 `;
 
-function InfoBox({ children, profile, onClick }) {
+function InfoBox({ children, profile, onClick, active }) {
     return (
-        <Container onClick={onClick}>
+        <Container active={active} onClick={onClick}>
             <Profile {...profile} />
             <div style={{ flex: 1, marginLeft: "1rem" }}>
                 <Group>

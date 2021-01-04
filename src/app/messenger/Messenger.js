@@ -8,8 +8,8 @@ import Navigator from './Navigator';
 import Messages from './messages/Messages';
 import Contacts from './contacts/Contacts';
 
-const MainContainer = styled(Main).attrs({ as: "main", flexEnabled: true })`
-    height: 100vh;
+const MainContainer = styled(Main).attrs({flexEnabled: true })`
+    height: 100%;
     flex-direction: column;
 `;
 

@@ -47,7 +47,7 @@ function Messages() {
             <Scrollbar searchbar="messages">
                 {FakeData.map(data =>
                     <InfoBox onClick={moveToNextActivity} key={data.id}
-                        profile={{ name: data.name, img: "img/" + data.id + ".jpg", online: data.online }}>
+                        profile={{ name: data.name, online: data.online }}>
                         <>
                             <h4>{data.name}</h4>
                             <MessageTime>{data.time}</MessageTime>

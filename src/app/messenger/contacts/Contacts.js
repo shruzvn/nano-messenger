@@ -8,11 +8,11 @@ import { TruncateChar } from '../../../util/Tools';
 import LetterSeparator from './LetterSeparator';
 
 const FakeData = [
-    { id: "alannaCobbet", name: "Alanna Cobbet", lastseen: "Online", img: true },
-    { id: "austinCharles", name: "Austin Charles", lastseen: "yesterday", img: false },
-    { id: "beverleyCastill", name: "Beverley Castill", lastseen: "2 Jan", img: true },
-    { id: "danielBrown", name: "Daniel Brown", lastseen: "2 mins ago", img: true },
-    { id: "jamesMegan", name: "James Megan", lastseen: "Online", img: true },
+    { id: "alannaCobbet", name: "Alanna Cobbet", lastseen: "Online"},
+    { id: "austinCharles", name: "Austin Charles", lastseen: "yesterday"},
+    { id: "beverleyCastill", name: "Beverley Castill", lastseen: "2 Jan"},
+    { id: "danielBrown", name: "Daniel Brown", lastseen: "2 mins ago"},
+    { id: "jamesMegan", name: "James Megan", lastseen: "Online"},
 ];
 
 const getLetter = (x, y) => {
@@ -47,7 +47,6 @@ function Contacts() {
                         <Fragment key={i}>
                             {getLetter(data.name, FakeData[i - 1] && FakeData[i - 1].name)}
                             <InfoBox onClick={moveToNextActivity} profile={{
-                                img: data.img && "img/" + data.id + ".jpg",
                                 name: data.name,
                                 online: data.lastseen === "Online"
                             }}>

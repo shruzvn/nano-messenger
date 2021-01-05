@@ -116,21 +116,21 @@ const GlobalStyle = createGlobalStyle`
     }
 
     //Pop and fade
-    .pop-fade-enter {
+    .popFade-enter {
         opacity: 0;
         transform: scale(.5);
     }
-    .pop-fade-enter-active {
+    .popFade-enter-active {
         opacity: 1;
         transform: scale(1);
         transition-property: transform, opacity;
         transition-duration: 200ms;
     }
-    .pop-fade-exit {
+    .popFade-exit {
         opacity: 1;
         transform: scale(1);
     }
-    .pop-fade-exit-active {
+    .popFade-exit-active {
         opacity: 0;
         transform: scale(.5);
         transition-property: transform, opacity;

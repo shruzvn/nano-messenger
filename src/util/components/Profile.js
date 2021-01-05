@@ -80,7 +80,7 @@ function Profile({ img, name, online, icon, selectable, selected, size }) {
                             :
                             TruncateChar(name, 1)
                 }
-                <CSSTransition classNames="pop-fade" unmountOnExit timeout={200} in={selectable ? selected : online}>
+                <CSSTransition classNames="popFade" unmountOnExit timeout={200} in={selectable ? selected : online}>
                     {
                         selectable ? 
                         <Selected><i className="material-icons-outlined">done</i></Selected>

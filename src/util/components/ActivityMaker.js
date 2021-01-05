@@ -22,7 +22,7 @@ const Wrapper = styled(Main)`
     `}
     will-change: transform;
     width: 100%;
-    min-height: 100%;
+    height: 100%;
 `;
 
 function Activity({ children, onExit, borderDirection, disableSwap, onClick }) {

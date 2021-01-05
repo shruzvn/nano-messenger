@@ -30,50 +30,50 @@ function Activity({ children, onExit, borderDirection, disableSwap, onClick }) {
 
     const [defaultPoints, initDefualtPoints] = useState(null),
         [point, setPoint] = useState(0),
-        [swapping, enableSwapping] = useState(null);
+        [swipping, enableSwipping] = useState(null);
 
     useEffect(() => {
         if (!disableSwap) {
-            window.addEventListener("mousedown", swapStarts, false);
-            window.addEventListener("touchstart", swapStarts, false);
+            window.addEventListener("mousedown", swipStarts, false);
+            window.addEventListener("touchstart", swipStarts, false);
         } else {
-            window.removeEventListener("mousedown", swapStarts, false);
-            window.removeEventListener("touchstart", swapStarts, false);
+            window.removeEventListener("mousedown", swipStarts, false);
+            window.removeEventListener("touchstart", swipStarts, false);
         }
         return () => {
-            window.removeEventListener("mousedown", swapStarts, false);
-            window.removeEventListener("touchstart", swapStarts, false);
-            swapEnds();
+            window.removeEventListener("mousedown", swipStarts, false);
+            window.removeEventListener("touchstart", swipStarts, false);
+            swipEnds();
         }
         //eslint-disable-next-line
     }, [disableSwap]);
 
     useEffect(() => {
         if (defaultPoints) {
-            enableSwapping(true);
+            enableSwipping(true);
             if (defaultPoints.isTouchScreen) {
-                window.addEventListener("touchmove", swap, false);
-                window.addEventListener("touchend", swapEnds, false);
-                window.addEventListener("touchcancel", swapEnds, false);
+                window.addEventListener("touchmove", swip, false);
+                window.addEventListener("touchend", swipEnds, false);
+                window.addEventListener("touchcancel", swipEnds, false);
             } else {
-                window.addEventListener("mousemove", swap, false);
-                window.addEventListener("mouseup", swapEnds, false);
+                window.addEventListener("mousemove", swip, false);
+                window.addEventListener("mouseup", swipEnds, false);
             }
         }
         //eslint-disable-next-line
     }, [defaultPoints]);
 
     useEffect(() => {
-        if (!swapping) {
+        if (!swipping) {
             if (point > 100)
                 onExit && onExit();
             else
                 setPoint(0);
         }
         //eslint-disable-next-line
-    }, [swapping])
+    }, [swipping]);
 
-    const swapStarts = e => {
+    const swipStarts = e => {
         let clientX, clientY, isTouchScreen = false;
         const { target } = e;
         if (e.changedTouches) {
@@ -90,9 +90,9 @@ function Activity({ children, onExit, borderDirection, disableSwap, onClick }) {
                 e.preventDefault();
             initDefualtPoints({ x: clientX, y: clientY, isTouchScreen });
         }
-    }
+    };
 
-    const swap = (e) => {
+    const swip = (e) => {
         let clientX, clientY;
         if (e.changedTouches) {
             clientX = e.changedTouches[0].clientX;
@@ -105,27 +105,27 @@ function Activity({ children, onExit, borderDirection, disableSwap, onClick }) {
         const diff = Math.abs(clientY - defaultPoints.y),
             calculatedPoint = Math.round(clientX - defaultPoints.x);
         if ((diff > 10 && calculatedPoint < 50) || calculatedPoint < 0){
-            swapEnds();
+            swipEnds();
             return false;
         }
         setPoint(calculatedPoint);
-    }
+    };
 
-    const swapEnds = () => {
-        window.removeEventListener("mousemove", swap, false);
-        window.removeEventListener("touchmove", swap, false);
-        window.removeEventListener("mouseup", swapEnds, false);
-        window.removeEventListener("touchend", swapEnds, false);
-        window.removeEventListener("touchcancel", swapEnds, false);
-        enableSwapping(false);
+    const swipEnds = () => {
+        window.removeEventListener("mousemove", swip, false);
+        window.removeEventListener("touchmove", swip, false);
+        window.removeEventListener("mouseup", swipEnds, false);
+        window.removeEventListener("touchend", swipEnds, false);
+        window.removeEventListener("touchcancel", swipEnds, false);
+        enableSwipping(false);
         initDefualtPoints(null);
-    }
+    };
 
     return (
         <Container borderDirection={borderDirection}>
             <Wrapper onClick={onClick} style={{
                 transform: `translateX(${point}px)`
-            }} enableTransition={!swapping} ref={ReferenceToContainer}>
+            }} enableTransition={!swipping} ref={ReferenceToContainer}>
                 {children}
             </Wrapper>
         </Container>

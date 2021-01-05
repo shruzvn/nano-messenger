@@ -6,8 +6,9 @@ import { TruncateChar } from '../Tools';
 
 const Wrapper = styled.div`
     background-color: ${({ theme, selected }) => selected ? theme.primary : theme.main[2]};
-    width: ${({ size }) => size === "L" ? "6.5rem" : "3.5rem"};
-    height: ${({ size }) => size === "L" ? "6.5rem" : "3.5rem"};
+    width: ${({ size }) => size === "L" ? "6rem" : "3.5rem"};
+    height: ${({ size }) => size === "L" ? "6rem" : "3.5rem"};
+    font-size: ${({ size }) => size === "L" ? "2.2rem" : "1.2rem"};
     border-radius: 50%;
     transition: 200ms background-color;
 `;
@@ -15,7 +16,6 @@ const Wrapper = styled.div`
 const Container = styled(Main).attrs({ as: "div", xAlign: "center", yAlign: "center", flexEnabled: true })`
     background-color: ${({ theme }) => theme.main[2]};
     color: ${({ theme }) => theme.icon};
-    font-size: 1.2rem;
     font-weight: bold;
     border-radius: 50%;
     width: 100%;
@@ -36,7 +36,7 @@ const Container = styled(Main).attrs({ as: "div", xAlign: "center", yAlign: "cen
         transform-origin: center;
         transform: ${selected ? "scale(.9) translate(.03rem, .03rem)" : "none"};
         border: .2rem solid;
-        border-color: ${({ theme, selected }) => selected ? theme.main[0] : "transparent"};
+        border-color: ${({ theme }) => selected ? theme.main[0] : "transparent"};
     `}
 `;
 
@@ -67,9 +67,9 @@ const Selected = styled(OnlineDot)`
     }
 `;
 
-function Profile({ img, name, online, icon, selectable, selected }) {
+function Profile({ img, name, online, icon, selectable, selected, size }) {
     return (
-        <Wrapper selected={selected}>
+        <Wrapper size={size} selected={selected}>
             <Container selectable={selectable} selected={selected}>
                 {
                     icon ?

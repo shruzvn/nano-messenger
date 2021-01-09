@@ -27,7 +27,7 @@ const Wrapper = styled(Main)`
 
 let separateMouseDownAndTouchStarts = 0;
 
-function Activity({ children, onExit, borderDirection, disableSwap, onClick }) {
+function Activity({ children, onExit, borderDirection, disableSwap }) {
     const ReferenceToContainer = useRef(null);
 
     const [defaultPoints, initDefualtPoints] = useState(null),
@@ -132,7 +132,7 @@ function Activity({ children, onExit, borderDirection, disableSwap, onClick }) {
 
     return (
         <Container borderDirection={borderDirection}>
-            <Wrapper onClick={onClick} style={{
+            <Wrapper style={{
                 transform: `translateX(${point}px)`
             }} enableTransition={!swipping} ref={ReferenceToContainer}>
                 {children}

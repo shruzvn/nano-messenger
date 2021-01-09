@@ -54,7 +54,7 @@ let separateMouseDownAndTouchStarts = 0;
 
 function InfoBox({ children, profile, active, disableSwip, onDelete, onClick }) {
     const [defaultPoints, initDefualtPoints] = useState(null),
-        [point, setPoint] = useState(0),
+        [point, setPoint] = useState({diff: 0, point: 0}),
         [swipping, enableSwipping] = useState(null);
 
     useEffect(() => {
@@ -75,12 +75,12 @@ function InfoBox({ children, profile, active, disableSwip, onDelete, onClick }) 
 
     useEffect(() => {
         if (swipping === false) {
-            if (point === 0)
+            if (point.point === 0 && point.diff < 10)
                 onClick && onClick();
             else if (-point > 200)
                 console.log("Delete");
             swipEnds();
-            setPoint(0);
+            setPoint({diff: 0, point: 0});
         }
         //eslint-disable-next-line
     }, [swipping]);
@@ -117,11 +117,11 @@ function InfoBox({ children, profile, active, disableSwip, onDelete, onClick }) 
             clientX = e.clientX;
             clientY = e.clientY;
         }
-        const diff = Math.abs(clientY - defaultPoints.y),
+        let diff = Math.abs(clientY - defaultPoints.y),
             calculatedPoint = Math.round(clientX - defaultPoints.x);
         if ((diff > 10 && calculatedPoint > 50) || calculatedPoint > 0)
-            return false;
-        setPoint(calculatedPoint);
+            calculatedPoint = 0;
+        setPoint({point: calculatedPoint, diff});
     };
 
     const swipEnds = () => {
@@ -140,9 +140,9 @@ function InfoBox({ children, profile, active, disableSwip, onDelete, onClick }) 
                 <i className="material-icons-outlined">delete</i>
             </DeleteContainer>
             <Container onTouchStart={swipStarts} onMouseDown={swipStarts}
-                swipEnabled={point < 0}
+                swipEnabled={point.point < 0}
                 enableTransition={!swipping}
-                style={{ transform: "translateX(" + point + "px)" }}
+                style={{ transform: "translateX(" + point.point + "px)" }}
                 active={active}>
                 <Profile {...profile} />
                 <div style={{ flex: 1, marginLeft: "1rem" }}>

@@ -79,6 +79,7 @@ function InfoBox({ children, profile, active, disableSwip, onDelete, onClick }) 
                 onClick && onClick();
             else if (-point > 200)
                 console.log("Delete");
+            swipEnds();
             setPoint(0);
         }
         //eslint-disable-next-line
@@ -118,10 +119,8 @@ function InfoBox({ children, profile, active, disableSwip, onDelete, onClick }) 
         }
         const diff = Math.abs(clientY - defaultPoints.y),
             calculatedPoint = Math.round(clientX - defaultPoints.x);
-        if ((diff > 10 && calculatedPoint > 50) || calculatedPoint > 0) {
-            swipEnds();
+        if ((diff > 10 && calculatedPoint > 50) || calculatedPoint > 0)
             return false;
-        }
         setPoint(calculatedPoint);
     };
 

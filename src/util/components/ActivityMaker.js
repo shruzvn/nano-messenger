@@ -25,6 +25,8 @@ const Wrapper = styled(Main)`
     height: 100%;
 `;
 
+let separateMouseDownAndTouchStarts = 0;
+
 function Activity({ children, onExit, borderDirection, disableSwap, onClick }) {
     const ReferenceToContainer = useRef(null);
 
@@ -55,6 +57,7 @@ function Activity({ children, onExit, borderDirection, disableSwap, onClick }) {
                 window.addEventListener("touchmove", swip, false);
                 window.addEventListener("touchend", swipEnds, false);
                 window.addEventListener("touchcancel", swipEnds, false);
+                separateMouseDownAndTouchStarts++;
             } else {
                 window.addEventListener("mousemove", swip, false);
                 window.addEventListener("mouseup", swipEnds, false);
@@ -82,8 +85,13 @@ function Activity({ children, onExit, borderDirection, disableSwap, onClick }) {
             isTouchScreen = true;
         }
         else {
+            if (separateMouseDownAndTouchStarts > 0) {
+                separateMouseDownAndTouchStarts = 0;
+                return false;
+            }
             clientX = e.clientX;
             clientY = e.clientY;
+            
         }
         if (ReferenceToContainer.current.contains(target)) {
             if (!isTouchScreen)
@@ -97,6 +105,7 @@ function Activity({ children, onExit, borderDirection, disableSwap, onClick }) {
         if (e.changedTouches) {
             clientX = e.changedTouches[0].clientX;
             clientY = e.changedTouches[0].clientY;
+            separateMouseDownAndTouchStarts = 0;
         }
         else {
             clientX = e.clientX;

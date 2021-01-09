@@ -86,7 +86,6 @@ function InfoBox({ children, profile, active, disableSwip, onDelete, onClick }) 
 
     const swipStarts = e => {
         if (!disableSwip) {
-            console.log(e.type)
             let clientX, clientY, isTouchScreen = false;
             if (e.changedTouches) {
                 clientX = e.changedTouches[0].clientX;
@@ -126,7 +125,7 @@ function InfoBox({ children, profile, active, disableSwip, onDelete, onClick }) 
         setPoint(calculatedPoint);
     };
 
-    const swipEnds = e => {
+    const swipEnds = () => {
         window.removeEventListener("mousemove", swip, false);
         window.removeEventListener("touchmove", swip, false);
         window.removeEventListener("mouseup", swipEnds, false);

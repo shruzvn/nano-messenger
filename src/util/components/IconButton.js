@@ -4,8 +4,8 @@ import { SwitchTransition, CSSTransition } from 'react-transition-group';
 import { Main } from '../../common/Containers';
 
 const Button = styled(Main).attrs({ as: "div", flexEnabled: true, xAlign: "center", yAlign: "center" })`
-    width: 3rem;
-    height: 3rem;
+    width: 2.8rem;
+    height: 2.8rem;
     border-radius: 50%;
     cursor: pointer;
     transition-property: background-color, color, transform;

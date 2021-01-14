@@ -17,7 +17,7 @@ export const Dark = {
     primary: "#4361EE",
     primaryInner: "#FFF",
     secondary: "#06D6A0",
-    border: "#282E32",
+    border: "#24292D",
     icon: "#8D959D",
     delete: "#F52A50",
     main: ["#212529", "#262B2F", "#343A40"],

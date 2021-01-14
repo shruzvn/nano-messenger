@@ -11,7 +11,7 @@ const props = {
 
 const TextArea = styled.textarea.attrs({ placeholder: "Type your message here...", rows: 1})`
     flex: 1;
-    padding: 1.6rem 1.5rem;
+    padding: 1.6rem 1.2rem;
     background-color: ${({ theme }) => theme.main[0]};
     border: none;
     outline: none;
@@ -37,7 +37,7 @@ function MessageInput() {
             <TextArea onChange={changeHandler}  />
             <IconButton style={{margin: "0 0 .7rem .3rem"}} type={1} icon="emoji_emotions"/>
             <IconButton style={{margin: "0 0 .7rem .3rem"}} type={1} icon="image"/>
-            <IconButton style={{margin: "0 1.5rem .7rem 1rem"}} type={3} icon="send"/>
+            <IconButton style={{margin: "0 1.2rem .7rem 1rem"}} type={3} icon="send"/>
         </Container>
     )
 }

@@ -20,7 +20,7 @@ const Group = styled(Main).attrs({ as: "div", yAlign: "center", flexEnabled: tru
 `;
 
 const DeleteContainer = styled(Main).attrs({ as: "div", yAlign: "center", xAlign: "flex-end", flexEnabled: true })`
-    padding: 1.5rem;
+    padding: 1.2rem;
     position: absolute;
     top: 50%;
     left: 0;
@@ -35,7 +35,7 @@ const DeleteContainer = styled(Main).attrs({ as: "div", yAlign: "center", xAlign
 `;
 
 const Container = styled(Group)`
-    padding: 1.2rem 1.5rem;
+    padding: 1.2rem;
     background-color: ${({ theme, active }) => active ? theme.main[1] : theme.main[0]};
     cursor: pointer;
     transition-property: background-color, color, border-radius;
@@ -149,7 +149,7 @@ function InfoBox({ children, profile, active, disableSwip, onDelete, onClick, id
                 active={active}>
                 {
                     backEnabled &&
-                    <IconButton style={{margin: "0 .5rem 0 -1rem"}} onClick={onBack} icon="keyboard_backspace" type={1} />
+                    <IconButton style={{margin: "0 .5rem 0 -.5rem"}} onClick={onBack} icon="keyboard_backspace" type={1} />
                 }
                 <Profile {...profile} />
                 <div style={{ flex: 1, marginLeft: "1rem" }}>

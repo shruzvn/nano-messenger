@@ -42,19 +42,7 @@ const Button = styled(Main).attrs({ as: "div", flexEnabled: true, xAlign: "cente
 function IconButton(props) {
     return (
         <Button {...props} >
-            {typeof props.icon !== "string" ?
-                <SwitchTransition mode="out-in">
-                    <CSSTransition key={props.animationState} classNames="fadeToDown" addEndListener={(node, done) => {
-                        node.addEventListener("transitionend", done, false);
-                    }}>
-                        <i className="material-icons-outlined">
-                            {props.animationState ? props.icon[0] : props.icon[1]}
-                        </i>
-                    </CSSTransition>
-                </SwitchTransition>
-                :
-                <i className="material-icons-outlined">{props.icon}</i>
-            }
+            <i className="material-icons-outlined">{props.icon}</i>
         </Button>
     )
 }

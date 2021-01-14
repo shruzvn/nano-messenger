@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { CSSTransition } from 'react-transition-group';
 
 import { Main, MaxToParent } from '../../common/Containers';
-import Menu from './Menu';
 import Navigator from './Navigator';
 import Messages from './messages/Messages';
 import Contacts from './contacts/Contacts';
@@ -64,7 +63,6 @@ function Messenger() {
 
     return (
         <MainContainer>
-            <Menu />
             <Container>
                 <Navigator onSelect={changeActivity} active={currentActivity} />
                 <ActivityWrapper>

@@ -20,7 +20,7 @@ const SearchContainer = styled.div`
 `;
 
 const Searchbar = styled.div`
-    padding: 1.4rem 1.5rem 0;
+    padding: 1.2rem 1.2rem 0;
     background-color: ${({ theme }) => theme.main[0]};
     box-shadow: 0 .5rem 1rem ${({ theme }) => theme.main[0]};
     transition-property: box-shadow, background-color;

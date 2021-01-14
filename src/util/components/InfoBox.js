@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components';
 
 import { Main } from '../../common/Containers';
 import Profile from './Profile';
+import IconButton from './IconButton';
 
 const Group = styled(Main).attrs({ as: "div", yAlign: "center", flexEnabled: true })`
     background-color: transparent;
@@ -34,7 +35,7 @@ const DeleteContainer = styled(Main).attrs({ as: "div", yAlign: "center", xAlign
 `;
 
 const Container = styled(Group)`
-    padding: 1rem 1.5rem;
+    padding: 1.2rem 1.5rem;
     background-color: ${({ theme, active }) => active ? theme.main[1] : theme.main[0]};
     cursor: pointer;
     transition-property: background-color, color, border-radius;
@@ -52,9 +53,9 @@ const Container = styled(Group)`
 
 let separateMouseDownAndTouchStarts = 0;
 
-function InfoBox({ children, profile, active, disableSwip, onDelete, onClick }) {
+function InfoBox({ children, profile, active, disableSwip, onDelete, onClick, id, backEnabled, onBack }) {
     const [defaultPoints, initDefualtPoints] = useState(null),
-        [point, setPoint] = useState({diff: 0, point: 0}),
+        [point, setPoint] = useState({ diff: 0, point: 0 }),
         [swipping, enableSwipping] = useState(null);
 
     useEffect(() => {
@@ -76,11 +77,11 @@ function InfoBox({ children, profile, active, disableSwip, onDelete, onClick }) 
     useEffect(() => {
         if (swipping === false) {
             if (point.point === 0 && point.diff < 10)
-                onClick && onClick();
+                onClick && onClick(id);
             else if (-point > 200)
                 console.log("Delete");
             swipEnds();
-            setPoint({diff: 0, point: 0});
+            setPoint({ diff: 0, point: 0 });
         }
         //eslint-disable-next-line
     }, [swipping]);
@@ -121,7 +122,7 @@ function InfoBox({ children, profile, active, disableSwip, onDelete, onClick }) 
             calculatedPoint = Math.round(clientX - defaultPoints.x);
         if ((diff > 10 && calculatedPoint > 50) || calculatedPoint > 0)
             calculatedPoint = 0;
-        setPoint({point: calculatedPoint, diff});
+        setPoint({ point: calculatedPoint, diff });
     };
 
     const swipEnds = () => {
@@ -136,14 +137,20 @@ function InfoBox({ children, profile, active, disableSwip, onDelete, onClick }) 
 
     return (
         <div style={{ position: "relative" }}>
-            <DeleteContainer>
-                <i className="material-icons-outlined">delete</i>
-            </DeleteContainer>
+            {!disableSwip &&
+                <DeleteContainer>
+                    <i className="material-icons-outlined">delete</i>
+                </DeleteContainer>
+            }
             <Container onTouchStart={swipStarts} onMouseDown={swipStarts}
                 swipEnabled={point.point < 0}
                 enableTransition={!swipping}
                 style={{ transform: "translateX(" + point.point + "px)" }}
                 active={active}>
+                {
+                    backEnabled &&
+                    <IconButton style={{margin: "0 .5rem 0 -1rem"}} onClick={onBack} icon="keyboard_backspace" type={1} />
+                }
                 <Profile {...profile} />
                 <div style={{ flex: 1, marginLeft: "1rem" }}>
                     <Group>

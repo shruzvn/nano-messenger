@@ -17,6 +17,8 @@ const From = styled(MessageTime)`
 const GroupIcon = styled.i.attrs({ className: "material-icons-outlined" })`
     margin-right: .5rem;
     font-size: 1.2rem;
+    color: ${({theme})=> theme.text[1]};
+    transition: 200ms color;
 `;
 
 const UnreadMessages = styled(Main).attrs({as: "div", flexEnabled: true, yAlign: "center"})`
@@ -30,9 +32,10 @@ const UnreadMessages = styled(Main).attrs({as: "div", flexEnabled: true, yAlign:
     transition-property: background-color, color, width;
 `;
 
-function MessageBox({ onClick, name, isGroup, from, readState, message, time, profilePicture, unread, online }) {
+function MessageBox({ onClick, name, isGroup, from, readState, message, time, profilePicture, unread, lastseen, id, active }) {
     return (
-        <InfoBox onClick={onClick} profile={profilePicture ? { img: profilePicture, online } : { name, online }}>
+        <InfoBox id={id} onClick={onClick} active={active}
+        profile={profilePicture ? { img: profilePicture, online: lastseen === "Online" } : { name, online: lastseen === "Online" }}>
             <>
                 {isGroup && <GroupIcon>group</GroupIcon>}
                 <h4>{name}</h4>

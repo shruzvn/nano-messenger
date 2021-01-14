@@ -7,7 +7,7 @@ const Container = styled.div`
 
 const ScrollContainer = styled(Container)`
     ${({ searchbar }) => searchbar && css`
-        padding-top: 6.6rem;
+        padding-top: 6rem;
     `}
 `;
 
@@ -20,7 +20,7 @@ const SearchContainer = styled.div`
 `;
 
 const Searchbar = styled.div`
-    padding: 1.5rem 1.5rem 0;
+    padding: 1.4rem 1.5rem 0;
     background-color: ${({ theme }) => theme.main[0]};
     box-shadow: 0 .5rem 1rem ${({ theme }) => theme.main[0]};
     transition-property: box-shadow, background-color;
@@ -40,7 +40,7 @@ const Searchbar = styled.div`
 const SearchInput = styled.input`
     border-radius: 0.7rem;
     width: 100%;
-    padding: 1.2rem 1.2rem 1.2rem 3rem;
+    padding: 1.1rem 1.2rem 1.1rem 3rem;
     background-color: ${({ theme }) => theme.main[1]};
     border: none;
     outline: none;

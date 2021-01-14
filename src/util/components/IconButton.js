@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components';
-import { SwitchTransition, CSSTransition } from 'react-transition-group';
 
 import { Main } from '../../common/Containers';
 

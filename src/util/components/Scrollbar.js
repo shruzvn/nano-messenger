@@ -30,7 +30,7 @@ const Searchbar = styled.div`
     i{
         transition: color 200ms;
         position: absolute;
-        left: 2.5rem;
+        left: 2.2rem;
         bottom: 1.05rem;
         font-size: 1.3rem;
         color: ${({ theme }) => theme.text[2]};

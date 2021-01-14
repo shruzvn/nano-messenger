@@ -25,7 +25,7 @@ const UnreadMessages = styled(Main).attrs({as: "div", flexEnabled: true, yAlign:
     border-radius: 5rem;
     background-color: ${({ theme }) => theme.primary};
     color: ${({ theme }) => theme.primaryInner};
-    font-size: .8rem;
+    font-size: .9rem;
     margin-left: auto;
     transition-property: background-color, color, width;
 `;

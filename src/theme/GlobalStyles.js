@@ -13,6 +13,7 @@ const GlobalStyle = createGlobalStyle`
     }
     html, body{
         font-size: 14px;
+        overflow: hidden;
     }
 
     //animations

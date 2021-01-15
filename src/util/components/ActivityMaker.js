@@ -93,11 +93,8 @@ function Activity({ children, onExit, borderDirection, disableSwap }) {
             clientY = e.clientY;
             
         }
-        if (ReferenceToContainer.current.contains(target)) {
-            if (!isTouchScreen)
-                e.preventDefault();
+        if (ReferenceToContainer.current.contains(target)) 
             initDefualtPoints({ x: clientX, y: clientY, isTouchScreen });
-        }
     };
 
     const swip = (e) => {

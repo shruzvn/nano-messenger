@@ -13,7 +13,7 @@ const GroupIcon = styled.i.attrs({ className: "material-icons-outlined" })`
 function TopBar({isGroup, name, bottom, online, backEnabled, onBack}) {
     return (
         <Container as="div" borderDirection="down" >
-            <InfoBox backEnabled={backEnabled} onBack={onBack} profile={{ name: name, online }} disableSwip>
+            <InfoBox backEnabled={backEnabled} onBack={onBack} disableSwip>
                 <>
                     {isGroup && <GroupIcon>group</GroupIcon>}
                     <h4>{name}</h4>

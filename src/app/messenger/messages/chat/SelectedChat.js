@@ -20,7 +20,8 @@ function SelectedChat({ user, mobileMode, onBack }) {
                         backEnabled={mobileMode}
                         onBack={onBack}
                         online={user.lastseen === "Online"}
-                        bottom={user.isGroup ? user.members.length + " Members" : user.lastseen} />
+                        bottom={user.isGroup ? user.members.length + " Members" :
+                            user.lastseen === "Online" ? "Online" : "Last seen " + user.lastseen} />
                     <MessagesArea />
                     <MessageInput />
                 </>

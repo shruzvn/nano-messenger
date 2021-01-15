@@ -146,19 +146,23 @@ function InfoBox({ children, profile, active, disableSwip, onDelete, onClick, id
                 swipEnabled={point.point < 0}
                 enableTransition={!swipping}
                 style={{ transform: "translateX(" + point.point + "px)" }}
+                onClick={disableSwip && onClick}
+                id={id}
                 active={active}>
                 {
                     backEnabled &&
-                    <IconButton style={{margin: "0 .5rem 0 -.5rem"}} onClick={onBack} icon="keyboard_backspace" type={1} />
+                    <IconButton style={{ margin: "0 1rem 0 -.5rem" }} onClick={onBack} icon="keyboard_backspace" type={1} />
                 }
-                <Profile {...profile} />
-                <div style={{ flex: 1, marginLeft: "1rem" }}>
+                {profile && <Profile {...profile} />}
+                <div style={{ flex: 1, marginLeft: profile ? "1rem" : 0 }}>
                     <Group>
                         {children[0]}
                     </Group>
-                    <Group>
-                        {children[1]}
-                    </Group>
+                    {children[1] &&
+                        <Group>
+                            {children[1]}
+                        </Group>
+                    }
                 </div>
             </Container>
         </div>

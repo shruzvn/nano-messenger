@@ -4,6 +4,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
+import registerServiceWorker from './registerServiceWorker';
+
 import GlobalStyles from './theme/GlobalStyles';
 import App from './App';
 import store from './app/redux/store';
@@ -17,3 +19,5 @@ ReactDOM.render(
   ],
   document.getElementById('root')
 );
+
+registerServiceWorker();

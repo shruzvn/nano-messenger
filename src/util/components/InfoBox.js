@@ -36,6 +36,7 @@ const DeleteContainer = styled(Main).attrs({ as: "div", yAlign: "center", xAlign
 
 const Container = styled(Group)`
     padding: 1.2rem;
+    height: 6rem;
     background-color: ${({ theme, active }) => active ? theme.main[1] : theme.main[0]};
     cursor: pointer;
     transition-property: background-color, color, border-radius;

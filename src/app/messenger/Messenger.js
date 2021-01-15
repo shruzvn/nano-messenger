@@ -6,6 +6,7 @@ import { Main, MaxToParent } from '../../common/Containers';
 import Navigator from './Navigator';
 import Messages from './messages/Messages';
 import Contacts from './contacts/Contacts';
+import Settings from './settings/Settings';
 
 const MainContainer = styled(Main).attrs({ flexEnabled: true })`
     height: 100%;
@@ -48,7 +49,7 @@ const animationProps = {
 const children = [
     { id: "messages", txt: <Messages />, grid: "24% 1fr 20%" },
     { id: "contacts", txt: <Contacts />, grid: "24% 1fr" },
-    { id: "settings", txt: "App Settings", grid: "1fr" },
+    { id: "settings", txt: <Settings/>, grid: "24% 1fr" },
     { id: "info", txt: "Information about app", grid: "1fr" }
 ];
 

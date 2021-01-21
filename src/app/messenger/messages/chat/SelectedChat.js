@@ -19,6 +19,7 @@ function SelectedChat({ user, mobileMode, onBack }) {
                         name={user.name}
                         backEnabled={mobileMode}
                         onBack={onBack}
+                        profile={{name: user.name, online: user.lastseen === "Online"}}
                         online={user.lastseen === "Online"}
                         bottom={user.isGroup ? user.members.length + " Members" :
                             user.lastseen === "Online" ? "Online" : "Last seen " + user.lastseen} />

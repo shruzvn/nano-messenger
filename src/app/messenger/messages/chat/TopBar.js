@@ -10,10 +10,10 @@ const GroupIcon = styled.i.attrs({ className: "material-icons-outlined" })`
     transition: 200ms color;
 `;
 
-function TopBar({isGroup, name, bottom, online, backEnabled, onBack}) {
+function TopBar({isGroup, name, bottom, online, backEnabled, onBack, profile}) {
     return (
         <Container as="div" borderDirection="down" >
-            <InfoBox backEnabled={backEnabled} onBack={onBack} disableSwip>
+            <InfoBox profile={profile} backEnabled={backEnabled} onBack={onBack} disableSwip>
                 <>
                     {isGroup && <GroupIcon>group</GroupIcon>}
                     <h4>{name}</h4>

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const Container = styled.div`
-    padding: 1rem 1.2rem;
+    padding: 1rem 1.4rem;
     cursor: pointer;
     background-color: ${({ theme }) => theme.main[0]};
     color: ${({ theme }) => theme.primary};

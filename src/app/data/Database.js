@@ -52,7 +52,6 @@ export const Conversations = [
             ]},
             {id: 23, read: true, date: "2021/1/1", time: "00:50", from: "1" ,messages: [
                 "=)))",
-                "Wuuz up",
             ]},
             {id: 24, read: true, date: "2021/1/1", time: "00:55", from: "6" ,messages: [
                 ":| WTF",

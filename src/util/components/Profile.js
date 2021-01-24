@@ -4,11 +4,11 @@ import { CSSTransition } from 'react-transition-group';
 import { Main } from '../../common/Containers';
 import { TruncateChar } from '../Tools';
 
-const Wrapper = styled.div`
+const Wrapper = styled.figure`
     background-color: ${({ theme, selected }) => selected ? theme.primary : theme.main[2]};
-    width: ${({ size }) => size === "L" ? "6rem" : "3.5rem"};
-    height: ${({ size }) => size === "L" ? "6rem" : "3.5rem"};
-    font-size: ${({ size }) => size === "L" ? "2.2rem" : "1.2rem"};
+    width: ${({ size }) => size === "L" ? "6rem" : size==="S" ? "3.1rem" : "3.5rem"};
+    height: ${({ size }) => size === "L" ? "6rem" : size==="S" ? "3.1rem" : "3.5rem"};
+    font-size: ${({ size }) => size === "L" ? "2.2rem" : size==="S" ? "1.1rem" : "1.2rem"};
     border-radius: 50%;
     transition: 200ms background-color;
 `;

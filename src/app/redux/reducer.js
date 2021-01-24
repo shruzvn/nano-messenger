@@ -1,7 +1,7 @@
 import * as actions from './actionTypes';
 
 const initState = {
-    darkMode: false,
+    darkMode: true,
     mobileView: false
 };
 

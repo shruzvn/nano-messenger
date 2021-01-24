@@ -6,12 +6,26 @@ import Scrollbar from '../../../util/components/Scrollbar';
 import MessageBox from './MessageBox';
 import SelectedChat from './chat/SelectedChat';
 
-const FakeData = [
-    { id: "danielBrown", name: "Daniel Brown", message: "Be there soon", time: "2 Mins ago", unread: 1, lastseen: "2 mins ago" },
-    { id: "alannaCobbet", name: "Alanna Cobbet", message: "Arigato!", time: "5 Mins ago", from: "You", readState: false, lastseen: "1 min ago" },
-    { id: "violetPierpoint", name: "Violet Pirepoint", message: "Kinda", time: "1 Hour ago", from: "You", readState: true, lastseen: "Online" },
-    { id: "gng", name: "Our Gang", message: "Well well well", time: "2 Hours ago", from: "Daniel Brown", isGroup: true, members: ["x", "y", "z"] },
-];
+import { Users, Conversations } from '../../data/Database';
+
+const createMessageBox = (data) => {
+    const lastMessage = data.conversation[data.conversation.length - 1],
+        isGroup = data.participants.length > 2,
+        user = !isGroup && Users[data.participants[1]];
+    return {
+        id: data.id,
+        name: isGroup ? data.name : user.firstname + " " + user.lastname, 
+        message: lastMessage.messages[lastMessage.messages.length - 1],
+        time: lastMessage.time,
+        date: lastMessage.date,
+        isGroup,
+        readState: lastMessage.read,
+        lastseen: !isGroup && user.lastseen,
+        key: data.id,
+        from: lastMessage.from === "1" ?  "You" : isGroup ? 
+             Users[lastMessage.from].firstname + " "+  Users[lastMessage.from].lastname : undefined
+    };
+};
 
 function Messages() {
     const mobileView = useSelector(state => state.mobileView);
@@ -36,15 +50,13 @@ function Messages() {
         <ActivityMaker mobileMode={mobileView}
             activityState={activityState} onBack={moveToPreviousActivity}>
             <Scrollbar searchbar="messages">
-                {FakeData.map((data, i) =>
-                    <MessageBox {...data} active={!mobileView && i === activeChat}
-                        key={data.id} id={i}
-                        onClick={selectChatHandler} />
+                {Conversations.map(data =>
+                    <MessageBox {...createMessageBox(data)} 
+                        active={!mobileView && data.id === activeChat} onClick={selectChatHandler} />
                 )}
             </Scrollbar>
-            <SelectedChat onBack={moveToPreviousActivity}
-                mobileMode={mobileView} user={FakeData[activeChat]} />
-            <div>Your Selected Contact</div>
+            <SelectedChat onBack={moveToPreviousActivity} mobileMode={mobileView} selected={activeChat} />
+            <div/>
         </ActivityMaker>
     )
 

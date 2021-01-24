@@ -1,28 +1,40 @@
+import {useEffect, useState} from 'react';
 import styled from 'styled-components';
 
 import MessageBubble, { Bubble } from './MessageBubble';
+
+import {Conversations, Users} from '../../../data/Database';
 
 const Container = styled.div`
     flex: 1;
     padding: 1.2rem;
 `;
 
-function MessagesArea() {
+const createMessageBubble = (data, selected)=>{
+    const parentData = Conversations[selected],
+        isGroup = parentData.participants.length > 2;
+    return {
+        time: data.time,
+        name: isGroup && Users[data.from].firstname + " " + Users[data.from].lastname,
+        type: data.from === "1" ? 1 : isGroup ? 2 : 0,
+        readState: data.read ? 1 : 0,
+    }
+};
+
+function MessagesArea({selected}) {
+    const [messages, editMessages] = useState([]);
+    
+    useEffect(()=>{
+        editMessages([...Conversations[selected].conversation]);
+    }, [selected]);
+
     return (
         <Container>
-            <MessageBubble time="12:00" name="Justin Dust" type={2}>
-                <Bubble>Hi</Bubble>
-            </MessageBubble>
-            <MessageBubble time="12:02" name="Alanna Cobbett" type={2}>
-                <Bubble>Hello</Bubble>
-                <Bubble>How are you?</Bubble>
-            </MessageBubble>
-            <MessageBubble time="12:00" name="Justin Dust" type={2}>
-                <Bubble>Fine what about you?</Bubble>
-            </MessageBubble>
-            <MessageBubble type={1} readState={1} time="11:20">
-                <Bubble>Hi Justin, we missed you. <br/> Where were you?</Bubble>
-            </MessageBubble>
+            {messages.map(data=>
+                <MessageBubble key={data.id} {...createMessageBubble(data, selected)}>
+                    {data.messages.map((msg, j)=> <Bubble key={data.id+j}>{msg}</Bubble>)}
+                </MessageBubble>
+            )}
         </Container>
     )
 }

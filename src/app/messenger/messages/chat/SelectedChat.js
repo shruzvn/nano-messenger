@@ -4,26 +4,37 @@ import TopBar from './TopBar';
 import MessageInput from './MessageInput';
 import MessagesArea from './MessagesArea';
 
+import { Users, Conversations } from '../../../data/Database';
+
 const Container = styled.div`
     display: flex;
     flex-direction: column;
     height: 100%;
 `;
 
-function SelectedChat({ user, mobileMode, onBack }) {
+const createSelectedChat = (selected) => {
+    const data = Conversations[selected],
+        isGroup = data.participants.length > 2,
+        user = !isGroup && Users[data.participants[1]];   
+    return {
+        isGroup,
+        name: isGroup ? data.name : user.firstname + " " + user.lastname,
+        profile: {
+            name: isGroup ? data.name :user.firstname,
+            online: !isGroup && user.lastseen === "Online",
+        },
+        bottom: isGroup ? data.participants.length + " Members" :
+            user.lastseen === "Online" ? "Online" : "Last seen " + user.lastseen
+    }
+};
+
+function SelectedChat({ selected, mobileMode, onBack }) {
     return (
         <Container>
-            {user &&
+            {selected !== -1 &&
                 <>
-                    <TopBar isGroup={user.isGroup}
-                        name={user.name}
-                        backEnabled={mobileMode}
-                        onBack={onBack}
-                        profile={{name: user.name, online: user.lastseen === "Online"}}
-                        online={user.lastseen === "Online"}
-                        bottom={user.isGroup ? user.members.length + " Members" :
-                            user.lastseen === "Online" ? "Online" : "Last seen " + user.lastseen} />
-                    <MessagesArea />
+                    <TopBar  {...createSelectedChat(selected)} backEnabled={mobileMode} onBack={onBack} />
+                    <MessagesArea selected={selected} />
                     <MessageInput />
                 </>
             }

@@ -92,7 +92,7 @@ function MessageContainer(props) {
 
     return (
         <Wrapper>
-            {props.type === 2 && <Profile size="S" name={props.name} />}
+            {props.type === 2 && <Profile online={props.online} size="S" name={props.name} />}
             <Container ref={refToContainer} chatType={props.type}>
                 {props.type === 2 && <p>{props.name}</p>}
                 {props.children}

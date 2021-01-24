@@ -8,6 +8,7 @@ import {Conversations, Users} from '../../../data/Database';
 const Container = styled.div`
     flex: 1;
     padding: 1.2rem;
+    overflow: hidden;
 `;
 
 const createMessageBubble = (data, selected)=>{
@@ -17,6 +18,7 @@ const createMessageBubble = (data, selected)=>{
         time: data.time,
         name: isGroup && Users[data.from].firstname + " " + Users[data.from].lastname,
         type: data.from === "1" ? 1 : isGroup ? 2 : 0,
+        online: isGroup && Users[data.from].lastseen === "Online",
         readState: data.read ? 1 : 0,
     }
 };

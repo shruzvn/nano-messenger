@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import TopBar from './TopBar';
 import MessageInput from './MessageInput';
 import MessagesArea from './MessagesArea';
+import { getRelativeTime } from './../../../../util/Time';
 
 import { Users, Conversations } from '../../../data/Database';
 
@@ -24,7 +25,7 @@ const createSelectedChat = (selected) => {
             online: !isGroup && user.lastseen === "Online",
         },
         bottom: isGroup ? data.participants.length + " Members" :
-            user.lastseen === "Online" ? "Online" : "Last seen " + user.lastseen
+            user.lastseen === "Online" ? "Online" : "Last seen " + getRelativeTime(user.lastseen)
     }
 };
 

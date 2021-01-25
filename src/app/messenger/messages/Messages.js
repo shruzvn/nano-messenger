@@ -16,7 +16,6 @@ const createMessageBox = (data) => {
         id: data.id,
         name: isGroup ? data.name : user.firstname + " " + user.lastname, 
         message: lastMessage.messages[lastMessage.messages.length - 1],
-        time: lastMessage.time,
         date: lastMessage.date,
         isGroup,
         readState: lastMessage.read,

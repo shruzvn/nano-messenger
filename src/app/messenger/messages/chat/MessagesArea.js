@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import MessageBubble, { Bubble } from './MessageBubble';
 
 import {Conversations, Users} from '../../../data/Database';
+import { getTime } from './../../../../util/Time';
 
 const Container = styled.div`
     flex: 1;
@@ -15,7 +16,7 @@ const createMessageBubble = (data, selected)=>{
     const parentData = Conversations[selected],
         isGroup = parentData.participants.length > 2;
     return {
-        time: data.time,
+        time: getTime(data.date),
         name: isGroup && Users[data.from].firstname + " " + Users[data.from].lastname,
         type: data.from === "1" ? 1 : isGroup ? 2 : 0,
         online: isGroup && Users[data.from].lastseen === "Online",

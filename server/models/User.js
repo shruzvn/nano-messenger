@@ -24,6 +24,11 @@ const User = new Schema({
         type: String,
         required: true
     },
+    
+    createdDate:{
+        type:Date,
+        default:Date.now()
+    }
 
 });
 
